@@ -1,14 +1,14 @@
-import ListSection from "./components/";
-import FilterSection from "./components/FilterSection";
+// import ListSection from "./components/";
+// import FilterSection from "./components/FilterSection";
 
-export default function Main() {
-  // console.log("inside main: ");
+// export default function Main() {
+//   // console.log("inside main: ");
 
-  return (
-    <>
-      <ListSection />
-      <FilterSection />
-      {/* {} */}
-    </>
-  );
-}
+//   return (
+//     <>
+//       <ListSection />
+//       <FilterSection />
+//       {}
+//     </>
+//   );
+// }
