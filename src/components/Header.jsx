@@ -5,7 +5,12 @@ export default function Header() {
         <h2>Welcome to Brewery Tours</h2>
         <form id="select-state-form" autoComplete="off">
           <label htmlFor="select-state">Which state are you visiting?</label>
-          <input id="select-state" name="select-state" type="text" />
+          <input
+            id="select-state"
+            name="select-state"
+            type="text"
+            // onChange=
+          />
         </form>
       </section>
     </header>

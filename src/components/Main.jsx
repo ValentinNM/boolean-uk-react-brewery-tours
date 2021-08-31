@@ -1,19 +1,14 @@
-import ListSection from "./components/ListSection"
-import FilterSection from "./components/FilterSection"
-import {useState} from "react"
+import ListSection from "./components/";
+import FilterSection from "./components/FilterSection";
 
-export default function Main () { 
-  console.log("inside main: ")
+export default function Main() {
+  // console.log("inside main: ");
 
-  // const [brew]
   return (
     <>
-    < article >
-    <ListSection />
-    <article />
-      <aside className="filters-section">
-      { < FilterSection/> } 
-      <aside />
-  </>
+      <ListSection />
+      <FilterSection />
+      {/* {} */}
+    </>
   );
 }
