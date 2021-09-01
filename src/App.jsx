@@ -4,27 +4,29 @@ import ListSection from "./components/ListSection";
 import { useEffect, useState } from "react";
 
 export default function App() {
-  // const [breweries, setBreweries] = useState("");
   const [stateImput, setStateImput] = useState("");
   const [breweries, setBreweries] = useState([]);
+  const [breweryName, setBreweryName] = useState([]);
+  const [cities, setCities] = useState([])
 
-  console.log("inside STATE: ", breweries);
-  console.log("stateImput: ", stateImput);
-
-  // const url = `https://api.openbrewerydb.org/breweries?by_state=${stateInput.value}`;
+  console.log("inside breweries STATE: ", breweries);
+  // console.log("stateImput: ", stateImput);
 
   const handleUserImput = (event) => {
     const searchedState = event.target.value;
-    console.log("inside handleUserImput: ", event.target.value);
+    // console.log("inside handleUserImput: ", event.target.value);
 
     setStateImput(searchedState);
   };
 
   const handleSubmitTest = (event) => {
     event.preventDefault();
-    // const searchedState = event.target.value;
-    console.log("inside handleSubmitTest: ", event.target.value);
-    // const url = `https://api.openbrewerydb.org/breweries?by_state=${stateImput}&per_page=50`;
+    // console.log("inside handleSubmitTest: ", event.target.value);
+
+    const handleFilterByCity = (event) => {
+      const selectedCity = event.target.value;
+      console.log("selectedCity: ", selectedCity);
+    };
 
     // useEffect(() => {
     fetch(
@@ -32,12 +34,10 @@ export default function App() {
     )
       .then((res) => res.json())
       .then(
-        (breweriesData) => setBreweries(breweriesData),
-        console.log("breweries in STATE: ", breweries)
+        (breweriesData) => setBreweries(breweriesData)
+        // console.log("breweries in STATE: ", breweries)
       );
     // }, []);
-
-    // setStateImput(searchedState);
   };
 
   return (
@@ -47,7 +47,12 @@ export default function App() {
         handleSubmitTest={handleSubmitTest}
       />
       <main>
-        <FilterSection />
+        <FilterSection
+        breweries={breweries}
+        stateImput={stateImput}
+        cities={cities}
+        setCities={setCities}
+        />
         <ListSection breweries={breweries} />
       </main>
     </>
