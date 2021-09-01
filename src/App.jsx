@@ -48,7 +48,7 @@ export default function App() {
       />
       <main>
         <FilterSection />
-        <ListSection />
+        <ListSection breweries={breweries} />
       </main>
     </>
   );
