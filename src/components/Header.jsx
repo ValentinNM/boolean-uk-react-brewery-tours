@@ -8,7 +8,7 @@ export default function Header(props) {
         <form
           id="select-state-form"
           autoComplete="off"
-          onSubmit={props.handleSubmitTest}
+          onSubmit={props.handleSearchedState}
         >
           <label htmlFor="select-state">Which state are you visiting?</label>
           <input

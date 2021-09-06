@@ -1,13 +1,19 @@
-export default function ListSection(props) {
-  console.log("inside ListSection", props);
+// import BookingForm from "./BookingForm";
 
-  const { breweries } = props;
+export default function ListSection(props) {
+  const { breweries, handleSearchBreweryImput, searchedBreweryName } = props;
+
+  console.log("inside ListSection", props);
 
   return (
     <>
-      <h1>List of Breweries from "state to be added" </h1>
+      <h1>List of Breweries from, {"state to be added"} </h1>
       <header className="search-bar">
-        <form id="search-breweries-form" autocomplete="off">
+        <form
+          id="search-breweries-form"
+          autocomplete="off"
+          // onChange={handleSearchBreweryImput}
+        >
           <label for="search-breweries">
             <h2>Search breweries:</h2>
           </label>
@@ -15,12 +21,16 @@ export default function ListSection(props) {
             id="search-breweries"
             name="search-breweries"
             type="text"
-            // onSubmit = { }
+            onChange={handleSearchBreweryImput}
           />
         </form>
       </header>
       <article>
         <ul className="breweries-list">
+          {
+            // tie the below to an turnary operator?? conditional renderring
+          }{" "}
+          {/* {breweries.filter((brewery) => brewery.name === searchedBreweryName)} */}
           {breweries.map((brewery) => {
             const {
               name,
@@ -51,7 +61,7 @@ export default function ListSection(props) {
                   <button>Book a tour</button>
                 </section>
                 <section className="link">
-                  <a href="${website_url}" target="_blank">
+                  <a href="{website_url}" target="_blank">
                     Visit Website
                   </a>
                 </section>

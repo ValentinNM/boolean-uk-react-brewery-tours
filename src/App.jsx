@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [stateImput, setStateImput] = useState("");
   const [breweries, setBreweries] = useState([]);
-  const [breweryName, setBreweryName] = useState([]);
-  const [cities, setCities] = useState([])
+  const [searchedBreweryName, setSearchedBreweryName] = useState("");
+  const [cities, setCities] = useState([]);
 
   console.log("inside breweries STATE: ", breweries);
   // console.log("stateImput: ", stateImput);
@@ -19,9 +19,9 @@ export default function App() {
     setStateImput(searchedState);
   };
 
-  const handleSubmitTest = (event) => {
+  const handleSearchedState = (event) => {
     event.preventDefault();
-    // console.log("inside handleSubmitTest: ", event.target.value);
+    // console.log("inside handleSearchedState: ", event.target.value);
 
     const handleFilterByCity = (event) => {
       const selectedCity = event.target.value;
@@ -29,9 +29,7 @@ export default function App() {
     };
 
     // useEffect(() => {
-    fetch(
-      `https://api.openbrewerydb.org/breweries?by_state=${stateImput}&per_page=50`
-    )
+    fetch(`https://api.openbrewerydb.org/breweries?by_state=${stateImput}`)
       .then((res) => res.json())
       .then(
         (breweriesData) => setBreweries(breweriesData)
@@ -40,20 +38,52 @@ export default function App() {
     // }, []);
   };
 
+  // events for the search brewerie:
+  const handleSearchBreweryImput = (event) => {
+    const searchedBrewery = event.target.value;
+    console.log("inside handleSearchBreweryImput: ", event.target.value);
+
+    setSearchedBreweryName(searchedBrewery);
+  };
+
+  useEffect(() => {
+    // if searchedBrewery ===
+    const filteredByType = breweries.filter((brewery) =>
+      brewery.name.includes(searchedBreweryName)
+    );
+    console.log("filteredByType: ", filteredByType, breweries);
+
+    setBreweries(filteredByType);
+  }, [searchedBreweryName]);
+
+  // const handleSearchedBrewery = (event) => {
+  //   event.preventDefault();
+  //   // console.log("inside handleSearchedBrewery: ", event.target.value);
+
+  //   const handleFilterByCity = (event) => {
+  //     const selectedBrewery = event.target.value;
+  //     console.log("selectedBrewery: ", selectedBrewery);
+  //   };
+  // };
+
   return (
     <>
       <Header
         handleUserImput={handleUserImput}
-        handleSubmitTest={handleSubmitTest}
+        handleSearchedState={handleSearchedState}
       />
       <main>
         <FilterSection
-        breweries={breweries}
-        stateImput={stateImput}
-        cities={cities}
-        setCities={setCities}
+          breweries={breweries}
+          stateImput={stateImput}
+          cities={cities}
+          setCities={setCities}
         />
-        <ListSection breweries={breweries} />
+        <ListSection
+          searchedBreweryName={searchedBreweryName}
+          breweries={breweries}
+          handleSearchBreweryImput={handleSearchBreweryImput}
+        />
       </main>
     </>
   );
