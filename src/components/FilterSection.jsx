@@ -1,7 +1,7 @@
 export default function FilterSection(props) {
   console.log("props here in FilterSection: ", props);
 
-  const { breweries } = props;
+  const { cities, handleFilterByCity } = props;
 
   return (
     <aside className="filters-section">
@@ -22,12 +22,18 @@ export default function FilterSection(props) {
         <button className="clear-all-btn">clear all</button>
       </div>
       <form id="filter-by-city-form">
-        {breweries.map((brewery) => {
-          const { city } = brewery;
+        {cities.map((city, index) => {
+          const cityLowerCase = city.toLowerCase();
+
           return (
             <>
-              <input type="checkbox" name={city} value={city} />
-              <label for={city}>{city}</label>
+              <input
+                type="checkbox"
+                name={cityLowerCase}
+                value={cityLowerCase}
+                onChange={handleFilterByCity}
+              />
+              <label htmlFor={cityLowerCase}>{city}</label>
             </>
           );
         })}

@@ -1,7 +1,7 @@
 // import BookingForm from "./BookingForm";
 
 export default function ListSection(props) {
-  const { breweries, handleSearchBreweryImput, searchedBreweryName } = props;
+  const { breweries } = props;
 
   console.log("inside ListSection", props);
 
@@ -11,7 +11,7 @@ export default function ListSection(props) {
       <header className="search-bar">
         <form
           id="search-breweries-form"
-          autocomplete="off"
+          autoComplete="off"
           // onChange={handleSearchBreweryImput}
         >
           <label for="search-breweries">
@@ -21,17 +21,13 @@ export default function ListSection(props) {
             id="search-breweries"
             name="search-breweries"
             type="text"
-            onChange={handleSearchBreweryImput}
+            // onChange={handleSearchBreweryImput}
           />
         </form>
       </header>
       <article>
         <ul className="breweries-list">
-          {
-            // tie the below to an turnary operator?? conditional renderring
-          }{" "}
-          {/* {breweries.filter((brewery) => brewery.name === searchedBreweryName)} */}
-          {breweries.map((brewery) => {
+          {breweries.map((brewery, index) => {
             const {
               name,
               brewery_type,
@@ -43,7 +39,7 @@ export default function ListSection(props) {
             } = brewery;
 
             return (
-              <li>
+              <li key={index}>
                 <h2>{name}</h2>
                 <div className="type">{brewery_type}</div>
                 <section className="address">
